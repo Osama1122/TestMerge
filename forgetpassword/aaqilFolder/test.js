@@ -1,4 +1,4 @@
-var test = 1;
+var abc = 1;
 
 console.log(test);
 
