@@ -1,6 +1,6 @@
-var test = 1;
+var testingvalue = 1;
 
-console.log(test);
+console.log(testingvalue);
 
 
 //Osama's Commit
