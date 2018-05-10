@@ -36,105 +36,76 @@
                         <ion-col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3></ion-col>
                         <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center class="student_reg prl-50 mt-5 mb-5">
                               
-                       <form class="form" id="student-reg-form"  [formGroup]="myForm">
+                              <form class="form" id="student-reg-form">
                                 <div class="upload-image">
                                   <ion-row>
-                                    <ion-col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center>
-                                      <div profile change_size>
-                                         <img src={{profilePhoto}} id="circle"/>                                        
-                                      </div>
-                                     
-                                     <!--  <h6 class="mt-0 mb-5">Father</h6> -->
+                                    <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-center>
+                                      <img src="assets/imgs/boy.png" width="60px"/>
+                                      <h6 class="mt-0 mb-5">Father</h6>
                                     </ion-col>
-                                  <ion-item class="imageUpload">
-                                    <ion-input ngControl="image" type="file" placeholder="Select Category Image" (change)="fileChangeEvent($event)"> </ion-input>
-                                     <ion-icon name="camera" class="icon-position">  </ion-icon>
-                                    </ion-item>
+                                    <ion-col col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center>
+                                        <img src="assets/imgs/girl.png" width="60px"/>
+                                        <h6 class="mt-0 mb-5">Mother</h6>
+                                    </ion-col>
                                   </ion-row>
-                                    </div>
+                                </div>
                                   <ion-list>
                                       <ion-item>
                                           <ion-label><ion-icon name="useroutline-icon"></ion-icon></ion-label>
-                                          <ion-input type="text" placeholder="First Name" id="fname" formControlName="fname"></ion-input>
+                                          <ion-input type="text" placeholder="First Name" id="fname"></ion-input>
                                         </ion-item>
-                                        <span class="error" *ngIf="myForm.controls['fname'].errors?.minlength &&
-                                        myForm.controls['fname'].touched">First Name length must be between 2 and 30. and number is not allowed </span><span class="error" *ngIf="myForm.controls['fname'].errors?.maxlength &&
-                                        myForm.controls['fname'].touched">First Name length must be between 2 and 30. and number is not allowed</span>
-                                        <span class="error" *ngIf="myForm.controls['fname'].errors?.pattern &&
-                                        myForm.controls['fname'].touched" >Number is not allowed</span>
-                                        <span class="error" *ngIf="myForm.controls['fname'].errors?.required &&
-                                        myForm.controls['fname'].touched" >First Name is Required. </span>
                                         <ion-item>
                                             <ion-label><ion-icon name="useroutline-icon"></ion-icon></ion-label>
-                                            <ion-input type="text" placeholder="Last Name" id="lname" formControlName="lname"></ion-input>
+                                            <ion-input type="text" placeholder="Last Name" id="lname"></ion-input>
                                           </ion-item>
                                         <ion-item>
                                           <ion-label><ion-icon name="user-icon"></ion-icon></ion-label>
-                                          <ion-input type="text" placeholder="Username" id="usr" formControlName="usr"></ion-input>
-                                        </ion-item>
-                                            <ion-item class="label-left">
-                                          <ion-label><ion-icon name="person"></ion-icon></ion-label>
-                                          <ion-select text-left  [(ngModel)]="gender" [ngModelOptions]="{standalone: true}"  (ionChange)="getGender()" >
-                                            <ion-option selected disabled value="M">Gender</ion-option>
-                                            <ion-option value="Male">Male</ion-option>
-                                            <ion-option value="Female">Female</ion-option>
-                                          </ion-select>
+                                          <ion-input type="text" placeholder="Username" id="usr"></ion-input>
                                         </ion-item>
                                         <ion-item>
                                             <ion-label><ion-icon name="mobile-icon"></ion-icon></ion-label>
-                                            <ion-input type="tel" placeholder="Mobile number" id="mobile" formControlName="mobile"></ion-input>
+                                            <ion-input type="tel" placeholder="Mobile number" id="mobile"></ion-input>
                                           </ion-item>
                                           <ion-item>
                                               <ion-label><ion-icon name="email-icon"></ion-icon></ion-label>
-                                              <ion-input type="email" placeholder="Email" id="email" formControlName="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" ng-pattern-restrict></ion-input>
+                                              <ion-input type="email" placeholder="Email" id="email"></ion-input>
                                             </ion-item>
-                                             <span class="error" *ngIf="myForm.controls['email'].errors?.valid &&
-                                              myForm.controls['email'].touched" >Valid email is required</span>
-                                              <span class="error" *ngIf="myForm.controls['email'].errors?.pattern &&
-                                              myForm.controls['email'].touched" >Valid email is required</span>
                                             <ion-item class="label-left">
-                                              <ion-label><ion-icon name="city-icon"></ion-icon></ion-label>
-                                                <ion-select  [(ngModel)]="cityObject" [ngModelOptions]="{standalone: true}"  (ionChange)="getSchoolsofCities()" text-left>
-                                                  <ion-option selected disabled value="choose_city">Choose City</ion-option>
-                                                    <ion-option value="city" *ngFor="let city of cities" [value] ="city">
-                                                       <span>
-                                                         <h2>{{city.fullname}}</h2>
-                                                       </span>
-                                                    </ion-option>
-                                                </ion-select> 
-                                            </ion-item>
+                                                <ion-label><ion-icon name="city-icon"></ion-icon></ion-label>
+                                                <ion-select text-left>
+                                                  <ion-option selected disabled value="city">City</ion-option>
+                                                  <ion-option value="">Nintendo64</ion-option>
+                                                  <ion-option value="">PlayStation</ion-option>
+                                                  <ion-option value="">Sega Genesis</ion-option>
+                                                  <ion-option value="">Sega Saturn</ion-option>
+                                                  <ion-option value="">SNES</ion-option>
+                                                </ion-select>
+                                              </ion-item>
                                               <ion-item class="label-left">
                                                   <ion-label><ion-icon name="calender-icon"></ion-icon></ion-label>
-                                                  <ion-datetime placeholder="Date of Birth" name="dob" displayFormat="DD MMM YYYY" formControlName="dob"></ion-datetime>
+                                                  <ion-datetime placeholder="Date of Birth" name="dob" displayFormat="DD MMM YYYY"></ion-datetime>
                                                 </ion-item>
-                                              <ion-item class="label-left"> 
+                                              <ion-item>
                                                   <ion-label><ion-icon name="grade-icon"></ion-icon></ion-label>
-                                                   <ion-select  [(ngModel)]="gradeObject" [ngModelOptions]="{standalone: true}" text-left>
-                                                  <ion-option selected disabled value="grade">Your Grade</ion-option>
-                                                    <ion-option value="city" *ngFor="let grade of grades" [value] ="grade">
-                                                       <span>
-                                                         <h2>{{grade.name}}</h2>
-                                                       </span>
-                                                    </ion-option>
-                                                </ion-select> 
+                                                  <ion-input type="text" placeholder="Grade" id="grade"></ion-input>
                                               </ion-item>
                                               <ion-item class="label-left">
                                                   <ion-label><ion-icon name="school-icon"></ion-icon></ion-label>
-                                                    <ion-select  [(ngModel)]="schoolObject" [ngModelOptions]="{standalone: true}" (ionChange)="getSchooldetail()"  text-left>
+                                                  <ion-select text-left>
                                                     <ion-option selected disabled value="choose_school">Choose School</ion-option>
-                                                      <ion-option value="school" *ngFor="let school of schools" [value] ="school">
-                                                         <span>
-                                                           <h2>{{school.fullname}}</h2>
-                                                         </span>
-                                                      </ion-option>
-                                                </ion-select> 
+                                                    <ion-option value="1">School 1</ion-option>
+                                                    <ion-option value="2">School 2</ion-option>
+                                                    <ion-option value="3">School 3</ion-option>
+                                                    <ion-option value="4">School 4</ion-option>
+                                                    <ion-option value="5">School 5</ion-option>
+                                                  </ion-select>
                                                 </ion-item>
                                                 <ion-item>
                                                   <ion-label><ion-icon name="keys-icon"></ion-icon></ion-label>
-                                                  <ion-input type="password" placeholder="Password" id="password" formControlName="pass"></ion-input>
+                                                  <ion-input type="password" placeholder="Password" id="password"></ion-input>
                                               </ion-item>
                                     </ion-list>
-                                      <button class="btn_bg" ion-button type="submit" (click)="Register()" [disabled]="!myForm.valid" >Register</button>
+                                      <button class="btn_bg" ion-button type="submit">Register</button>
                               </form>
                              <p> <button class="btn_bg" ion-button type="submit" (click)="registerSchool()">Register a school</button></p>
                           </ion-col>
@@ -163,35 +134,3 @@
         </ion-title>
       </ion-toolbar>
     </ion-footer>
-
-    <style type="text/css">
-      .icon-position{
-          font-size: 26px;
-          position: absolute;
-          bottom: 16px;
-          right: 98px;
-        }
-      .ion-item.imageUpload.item.item-block.item-md.item-input {
-        background-color: #fff0;
-      }
-      .imageUpload{
-          background-color: #fff0;
-      }
-
-      #circle {
-   width: 100px;
-    height: 100px;
-    background: #ccc9e1;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
-    border: 1px solid #686868;
-    margin: auto;
-}
-
-.error {
-    font-size: 11px;
-    color: red;
-}
-
-    </style>

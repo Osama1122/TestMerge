@@ -18,7 +18,7 @@ import { ResallerProfilePage } from '../resaller-profile/resaller-profile';
 export class ResallerSearchPage {
   items;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.initializeItems();
+    //this.initializeItems();
   }
 
   ionViewDidLoad() {

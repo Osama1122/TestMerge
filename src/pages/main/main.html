@@ -23,9 +23,9 @@
             <ion-list class="transparent_list_sidebar">
               <ion-item class="profile change_size"> 
                 <ion-avatar item-start>
-                  <img src="{{serverUrl}}{{profilePic}}">
+                  <img src="assets/imgs/ali.png">
                 </ion-avatar>
-                <h2>{{name}}</h2>
+                <h2>Ahmed Ali</h2>
                 <p><u>View Profile</u><u float-right>Logout</u></p>
               </ion-item>
               <ion-item class="points_earned change_size">
@@ -107,11 +107,11 @@
           <ion-col col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 no-padding class="rightbar2">
               <ion-grid style="height: 100%" no-padding>
                   <ion-row justify-content-center align-items-center style="height: 100%">
-                 <ion-col col-12 text-center class="class_selection ptb-2">
+                      <ion-col col-12 text-center class="class_selection ptb-2">
                           <ion-slides class="image-slider" loop="true" slidesPerView="3" centeredSlides="true">
-                              <ion-slide *ngFor="let class of classes" (click)="subjectSelection(class);">
+                              <ion-slide *ngFor="let class of classes" (click)="subjectSelection();">
                                 <div class="class_images">
-                                <div class="class_img"><img src="{{serverUrl}}{{class.imageurl}}" class="thumb-img" /></div>
+                                <div class="class_img"><img src="assets/imgs/{{class.image}}" class="thumb-img" /></div>
                                 <h3 class="c-grey">{{class.name}}</h3>
                               </div>
                               </ion-slide>
@@ -153,8 +153,8 @@
             <ion-icon name="logout-icon"></ion-icon>
           </button>
           <button  ion-button icon-left float-right class="c-default">
-            {{name}}
-           <img class="footer_users_img" src="{{serverUrl}}{{profilePic}}" width="50" />
+            Ali
+           <img src="assets/imgs/ali.png" width="50" />
           </button>
       </ion-title>
     </ion-toolbar>
