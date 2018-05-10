@@ -1,10 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams , Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams , Slides} from 'ionic-angular';
 import { SavedLoginsUsersPage } from '../saved-logins-users/saved-logins-users';
 import { UnitDetailsPage } from '../unit-details/unit-details';
-import { ShareService } from '../services/share';
-import { Http, Headers,RequestOptions , URLSearchParams , Response } from '@angular/http';
-import { LoadingController } from 'ionic-angular';
+
 /**
  * Generated class for the UnitSelectionPage page.
  *
@@ -55,6 +53,7 @@ export class UnitSelectionPage implements OnInit {
       this.slides._slides[slideIndex].style.transform = `scale(${slideScale})`;
     }
   }
+
 
   //for date picker
   public event = {
@@ -119,11 +118,9 @@ export class UnitSelectionPage implements OnInit {
     },
   ]
 
-  public unit;
-  constructor(public navCtrl: NavController, public navParams: NavParams ,public shareService: ShareService  , public loadingCtrl: LoadingController , private http: Http) {
-  var unitid = navParams.get('subjectid'); 
-  this.getUnitsOfSubject(unitid);
-  } 
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UnitSelectionPage');
@@ -132,30 +129,6 @@ export class UnitSelectionPage implements OnInit {
     this.navCtrl.setRoot(SavedLoginsUsersPage);
   }
   unitdetails(){
-    this.navCtrl.push(UnitDetailsPage);  
-  }
-
-    // GET UNITS OF SUBJECTS API - N O - 16 on D O C U M E N T A T I O N
-  getUnitsOfSubject(id){
-     var suuccessData = this.shareService.getSuccessData();
-     var token = suuccessData['token'];
-     var userId = suuccessData['userId'];
-     let loading = this.loadingCtrl.create({
-         content: 'Getting Units .. '
-         });
-     loading.present();
-     var headers = new Headers(); 
-     headers.append('Content-Type', 'application/json' );
-     headers.append('x-access-token', token); 
-     let options = new RequestOptions({ headers: headers} );
-     this.http.get("http://192.168.1.107:3000/units/subject/"+id, options ) 
-      .subscribe(data => {
-        this.unit = data.json();
-        loading.dismiss(); 
-       }, error => {  
-         loading.dismiss(); 
-      console.log(error);// Error getting the data
-    });
-
+    this.navCtrl.push(UnitDetailsPage);
   }
 }

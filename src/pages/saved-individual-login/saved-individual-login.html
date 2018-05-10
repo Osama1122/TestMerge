@@ -36,17 +36,17 @@
                         <ion-col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3></ion-col>
                         <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center class="indiv_users_login prl-50">
                           <div class="users_img">
-                            <img src="{{serverUrl}}{{userProfilePhoto}}" width="80" class="mb-3 users_img1" />
+                            <img src="assets/imgs/ali.png" width="80" class="mb-3" />
                           </div>
-                            <h1 class="c-grey mb-5">{{userFullName}}</h1>
-                            <form class="form" id="saved_user_login-form" [formGroup]="myForm">
+                            <h1 class="c-grey mb-5">Ali</h1>
+                            <form class="form" id="saved_user_login-form">
                                 <ion-list>
                                       <ion-item>
                                         <ion-label>  <ion-icon name="keys-icon"></ion-icon></ion-label>
-                                        <ion-input type="password" placeholder="Password" id="pass" formControlName="pass"></ion-input>
+                                        <ion-input type="password" placeholder="Password" id="pass"></ion-input>
                                       </ion-item>
                                 </ion-list>
-                                <button class="btn_bg mt-2" ion-button type="submit" (click)="Login();">Log In</button>
+                                <button class="btn_bg mt-2" ion-button type="submit" (click)="mainPageJump();">Log In</button>
                             </form>
                         </ion-col>
                         <ion-col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3></ion-col>
@@ -73,27 +73,3 @@
         </ion-title>
       </ion-toolbar>
     </ion-footer>
-
-    <style type="text/css">
-  
-  .users_img1 {
-    padding: 3px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
-    width: 100px;
-    height: 100px;
-    margin: -3px auto;
-    border-radius: 50px;
-}
-
-.users_img {
-    padding: 0px;
-    background-image: url(../assets/imgs/user-img-border.png);
-    background-size: contain;
-    background-position: center center;
-    width: 100px;
-    /* height: 100px; */
-    margin: 0px auto;
-}
-    </style>

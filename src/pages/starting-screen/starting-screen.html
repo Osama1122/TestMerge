@@ -24,18 +24,18 @@
                       <ion-col text-center>
                           <div class="login sidebar_content">
                             <img src="assets/imgs/avatar-outline.png" width="80" class="mb-3" />
-                            <form class="form" id="login-form" [formGroup]="myForm">
+                            <form class="form" id="login-form">
                                 <ion-list>
                                       <ion-item>
                                         <ion-label><ion-icon name="user-icon"></ion-icon></ion-label>
-                                        <ion-input type="tel" placeholder="Username" id="usr" formControlName="usr"></ion-input>
+                                        <ion-input type="tel" placeholder="Username" id="usr"></ion-input>
                                       </ion-item>
                                       <ion-item>
                                         <ion-label>  <ion-icon name="keys-icon"></ion-icon></ion-label>
-                                        <ion-input type="password" placeholder="Password" id="pass" formControlName="pass"></ion-input>
+                                        <ion-input type="password" placeholder="Password" id="pass"></ion-input>
                                       </ion-item>
                                     </ion-list>
-                                    <button class="btn_bg" ion-button type="submit" (click)="Login();" [disabled]="!myForm.valid" >Log In</button>
+                                    <button class="btn_bg" ion-button type="submit" (click)="mainPageJump();">Log In</button>
                                     <h3 class="m-0 c-brown">or</h3>
                                     <button class="btn_bg" ion-button type="submit" (click)="registerAs()">Sign Up</button>
                             </form>
