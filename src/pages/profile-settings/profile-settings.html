@@ -1,0 +1,192 @@
+<!--
+  Generated template for the ProfileSettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar text-center>
+    <ion-title>Profile Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="container bg2 auto_height">
+    <div class="wrapper">
+      <ion-grid no-padding style="height: 100%">
+        <ion-row style="height: 100%">
+          <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 no-padding class="leftbar">
+            <ion-list class="transparent_list_sidebar">
+              <ion-item class="profile change_size"> 
+                <ion-avatar item-start>
+                  <img src="assets/imgs/ali.png">
+                </ion-avatar>
+                <h2>Ahmed Ali</h2>
+                <p><u>View Profile</u><u float-right>Logout</u></p>
+              </ion-item>
+              <ion-item class="points_earned change_size">
+                <ion-avatar item-start>
+                  <img src="assets/imgs/MedalGold.png">
+                </ion-avatar>
+                <h2>Points Achieved</h2>
+                <h3><img src="assets/imgs/stars.png" width="120" /></h3>
+                <p>80/100</p>
+              </ion-item>
+          </ion-list>
+          <form class=" subject_form">
+          <ion-grid no-padding class="sidebar_zigzag">
+            <ion-row>
+              <ion-col col-6>
+                <ion-list inset>
+                  <ion-item>
+                    <ion-label>Subject:</ion-label>
+                    <ion-select text-left>
+                      <ion-option selected disabled value="all">All</ion-option>
+                      <ion-option value="1">Subject 1</ion-option>
+                      <ion-option value="2">Subject 2</ion-option>
+                      <ion-option value="3">Subject 3</ion-option>
+                      <ion-option value="4">Subject 4</ion-option>
+                      <ion-option value="5">Subject 5</ion-option>
+                    </ion-select>
+                  </ion-item>
+                  </ion-list>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-list inset>
+                    <ion-item>
+                  <ion-label>Date:</ion-label>
+                  <ion-datetime name="date" displayFormat="DD MMM YYYY" [(ngModel)]="myDate"></ion-datetime>
+                  <!-- <ion-datetime  placeholder="Select Date" name="dob" displayFormat="DD MMM YYYY"></ion-datetime> -->
+                </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+        
+        <ion-grid class="progress_bar">
+          <ion-row>
+          <ion-col>
+              <h4>In Last 30 Days</h4>
+              <h6>Unit Progess in all subjects</h6>
+              <progress-bar [progress]="loadProgress"></progress-bar>
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+
+        <ion-list class="transparent_list sidebar_user_status">
+            <ion-item class="answered_item">
+              <ion-avatar item-start>
+                <img src="assets/imgs/answered.png">
+              </ion-avatar>
+              <h2>Answered<ion-note float-right>38</ion-note></h2>
+                  <p><ion-note float-right>Questions</ion-note></p>
+            </ion-item>
+            <ion-item class="spent_item">
+                <ion-avatar item-start>
+                  <img src="assets/imgs/spent.png">
+                </ion-avatar>
+                <h2>Spent <ion-note float-right>40 Days</ion-note></h2>
+                  <p><ion-note float-right>Practising</ion-note></p>
+              </ion-item>
+              <ion-item class="completed_item">
+                  <ion-avatar item-start>
+                    <img src="assets/imgs/complete.png">
+                  </ion-avatar>
+                  <h2>completed Lessons <ion-note float-right>32/100</ion-note></h2>
+                  <p><ion-note float-right>Lessons</ion-note></p>
+                </ion-item>
+          </ion-list>
+
+
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 no-padding class="rightbar2">
+              <ion-grid style="height: 100%;">
+                  <ion-row>
+                      <ion-col col-12 text-center class="profile-settings p-2">
+                         
+                          <div class="block" *ngIf="show_panel_user_info">
+                              <div class="profile">
+                                  <div text-center>
+                                  <img src="assets/imgs/avatar-outline.png" class="mb-5">
+                                </div>
+                                  <ion-list class="transparent_list">
+                                      <ion-item>
+                                        <h2>Name</h2>
+                                        <p>Hamza Khan</p>
+                                      </ion-item>
+                                      <ion-item>
+                                          <h2>Mobile No</h2>
+                                          <p>+92 333 1234567</p>
+                                        </ion-item>
+                                        <ion-item>
+                                            <h2>Address</h2>
+                                            <p>H.No. 195, St.52, Islamabad Pakistan</p>
+                                          </ion-item>
+                                    </ion-list>
+                                  </div>
+                            <ion-row>
+                                <ion-col text-center>
+                                  <button ion-button class="btn_bg" type="button" (click)="show_panel_edit_user = true; show_panel_user_info = false">Edit</button>
+                                </ion-col>
+                            </ion-row>
+                          </div>
+        
+                          <div class="block" *ngIf="show_panel_edit_user">
+                              <ion-row>
+                                <ion-col>
+                                    <form id="edit-user" class="edit-form form">
+                                        <div text-center>
+                                            <img src="assets/imgs/avatar-outline.png" class="mb-5">
+                                          </div>
+                                      <ion-list text-left>
+                                        <ion-label>Name</ion-label>
+                                        <ion-item>
+                                          <ion-input type="text" id="ps_name" placeholder="Salma Saeed"></ion-input>
+                                        </ion-item>
+                                        <ion-label>Mobile Number</ion-label>
+                                        <ion-item>
+                                          <ion-input type="tel" id="ps_tel" placeholder="+92 312 123456"></ion-input>
+                                        </ion-item>
+                                        <ion-label>Password</ion-label>
+                                        <ion-item>
+                                            <ion-input type="password" id="ps_pass" placeholder="Change Password"></ion-input>
+                                          </ion-item>
+                                      </ion-list>
+                                      <ion-row>
+                                          <ion-col text-center>
+                                            <button ion-button class="btn_bg" type="button" (click)="show_panel_edit_user = false; show_panel_user_info = true">Save Changes</button>
+                                          </ion-col>
+                                      </ion-row>
+                                  </form>
+                                </ion-col>
+                            </ion-row>
+                          </div>
+                      </ion-col>
+
+                  </ion-row>
+                </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer no-border class="after-login-footer">
+    <ion-toolbar>
+      <ion-title>
+          <button ion-button item-start float-left class="c-default" (click)="savedUserLogins()">
+            <ion-icon name="logout-icon"></ion-icon>
+          </button>
+          <button  ion-button icon-left float-right class="c-default">
+            Ali
+           <img src="assets/imgs/ali.png" width="50" />
+          </button>
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer>

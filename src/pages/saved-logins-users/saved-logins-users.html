@@ -1,0 +1,84 @@
+<!--
+  Generated template for the SavedLoginsUsersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar text-center>
+    
+    <ion-title>
+          Log In
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <div class="container bg2">
+      <div class="wrapper">
+        <ion-grid no-padding style="height: 100%">
+          <ion-row style="height: 100%">
+            <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 no-padding class="leftbar">
+                <ion-grid no-padding style="height: 100%">
+                    <ion-row justify-content-center align-items-center style="height: 100%">
+                        <ion-col text-center>
+                            <div class="sidebar_content">
+                              <img src="assets/imgs/avatar-outline.png" width="80" class="mb-3" />
+                              <h3 class="c-brown" (click)="login()">Sign in with another account</h3>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 no-padding class="rightbar2">
+                <ion-grid style="height: 100%">
+                    <ion-row justify-content-center align-items-center style="height: 100%">
+                                <ion-col col-12 text-center class="multi_users_login" style="height: 100%">
+                            <ion-slides class="image-slider" loop="true" slidesPerView="3" centeredSlides="true">
+
+                                <ion-slide *ngFor="let user of usersdata" (click)="savedIndividualUser(user);">
+                                  <div class="users_images" >
+                                  <div class="users_img"><img src="{{serverUrl}}{{user.image}}" class="thumb-img" imageViewer/></div>
+                                  <h3 class="c-grey">{{user.firstname}} {{user.lastname}} </h3>
+                                </div>
+                                </ion-slide>
+                              </ion-slides>
+                        </ion-col>
+                        <ion-col col-12 class="show_on_mob">
+                            <div class=" line line2"></div> <br/><br/>
+                            <div class="sign_with_other_user">
+                                <ion-list class="transparent_list">
+                                    <ion-item>
+                                      <ion-avatar item-start>
+                                        <img src="assets/imgs/avatar-outline.png">
+                                      </ion-avatar>
+                                      <h2 (click)="login()">Sign in with another account</h2>
+                                    </ion-item>
+                                  </ion-list>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                  </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  
+  </ion-content>
+
+  <ion-footer no-border>
+      <ion-toolbar>
+        <ion-title>
+            <button ion-button item-start float-left class="c-default" (click)="mainPageJump()">
+                Log in
+            </button>
+            <button  ion-button icon-left float-right class="c-default">
+              Visitor
+              <ion-icon name="visitor-icon"></ion-icon>
+            </button>
+        </ion-title>
+      </ion-toolbar>
+    </ion-footer>

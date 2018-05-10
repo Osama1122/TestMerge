@@ -1,0 +1,105 @@
+<!--
+  Generated template for the RegisterSchoolPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar>
+    <ion-title>Register School</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="container bg2 height_auto">
+    <div class="wrapper">
+      <ion-grid no-padding style="height: 100%">
+        <ion-row style="height: 100%">
+          <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 no-padding class="leftbar">
+              <ion-grid no-padding style="height: 100%">
+                  <ion-row justify-content-center align-items-center style="height: 100%;">
+                      <ion-col text-center>
+                          <div class="sidebar_content">
+                              <h1 class="c-brown">Register School</h1>
+                            <h3 class="c-brown">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                          </div>
+                      </ion-col>
+                  </ion-row>
+              </ion-grid>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 no-padding class="rightbar2">
+              <ion-grid no-padding style="height: 100%">
+                  <ion-row justify-content-center align-items-center style="height: 100%;">
+                      <ion-col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3></ion-col>
+                      <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center class="school_reg prl-50 mt-5 mb-5">
+                            
+                            <form class="form" id="school-reg-form"  [formGroup]="myForm">
+                             
+                                <ion-list>
+                                    <ion-item>
+                                        <ion-label><ion-icon name="school-icon"></ion-icon></ion-label>
+                                        <ion-input type="text" placeholder="School Name" id="sch_name"  formControlName="schoolname"></ion-input>
+                                      </ion-item>
+                                         <ion-item class="label-left">
+                                        <ion-label><ion-icon name="flag"></ion-icon></ion-label>
+                                          <ion-select  [(ngModel)]="country" [ngModelOptions]="{standalone: true}"  (ionChange)="getCountry()" text-left >
+                                              <ion-option selected disabled value="city">Country</ion-option>
+                                              <ion-option *ngFor="let cn of countries" [value] ="cn" >
+                                                <span>
+                                                  <h2>{{cn.fullname}}</h2>
+                                                </span>
+                                              </ion-option>
+                                           </ion-select>
+                                      </ion-item>
+                                      <ion-item class="label-left">
+                                        <ion-label><ion-icon name="city-icon"></ion-icon></ion-label>
+                                          <ion-select  [(ngModel)]="city" [ngModelOptions]="{standalone: true}"  (ionChange)="getCity()" text-left >
+                                              <ion-option selected disabled value="city">City</ion-option>
+                                              <ion-option *ngFor="let c of cities" [value] ="c" >
+                                                <span>
+                                                  <h2>{{c.fullname}}</h2>
+                                                </span>
+                                              </ion-option>
+                                           </ion-select>
+                                      </ion-item>
+
+                                      <ion-item>
+                                        <ion-label><ion-icon name="user-icon"></ion-icon></ion-label>
+                                        <ion-input type="text" placeholder="Address" id="address"  formControlName="address"></ion-input>
+                                      </ion-item>
+                                    <!--   <ion-item>
+                                          <ion-label><ion-icon name="mobile-icon"></ion-icon></ion-label>
+                                          <ion-input type="tel" placeholder="Location" id="location"  formControlName="location"></ion-input>
+                                        </ion-item> -->
+                                  </ion-list>
+                                    <button class="btn_bg" ion-button type="submit" [disabled]="!myForm.valid" (click)="RegisterSchool()">Confirm School</button>
+                            </form>
+                        </ion-col>
+                      <ion-col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3></ion-col>
+                  </ion-row>
+              </ion-grid>
+          
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer no-border>
+    <ion-toolbar>
+      <ion-title>
+          <button ion-button item-start float-left class="c-default" (click)="mainPageJump()">
+              Log in
+          </button>
+          <button  ion-button icon-left float-right class="c-default">
+            Visitor
+            <ion-icon name="visitor-icon"></ion-icon>
+          </button>
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer>
