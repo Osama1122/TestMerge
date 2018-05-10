@@ -1,13 +1,17 @@
-import { Component, ViewChild, OnInit} from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { IonicPage, NavController, ToastController,NavParams , Slides} from 'ionic-angular';
 import { SavedLoginsUsersPage } from '../saved-logins-users/saved-logins-users';
 import { SubjectSelectionPage } from '../subject-selection/subject-selection';
+import { ShareService } from '../services/share';
+import { Http, Headers,RequestOptions , URLSearchParams , Response } from '@angular/http';
+import { LoadingController } from 'ionic-angular';
+import { Component, ViewChild, OnInit} from '@angular/core';
+
 
 /**
  * Generated class for the MainPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+ * Ionic pages and navigation. 
  */
 
 @IonicPage()
@@ -16,8 +20,7 @@ import { SubjectSelectionPage } from '../subject-selection/subject-selection';
   templateUrl: 'main.html',
 })
 export class MainPage implements OnInit {
-
-  @ViewChild(Slides) slides: Slides;
+    @ViewChild(Slides) slides: Slides; 
 
   onSlideTapped() {
     console.log(`Slide tapped: ${this.slides.clickedIndex}`);
@@ -54,7 +57,7 @@ export class MainPage implements OnInit {
       this.slides._slides[slideIndex].style.transform = `scale(${slideScale})`;
     }
   }
-
+  
   //for date picker
   public event = {
     month: '1990-02-19',
@@ -65,50 +68,6 @@ export class MainPage implements OnInit {
 //for progressbar
     //@Input('propertyName') myValue;
     //@Output() someEvent = new EventEmitter();
-
-//for class slider images
-  classes = [
-    {
-      name: 'Play Group',
-      image : 'class0.png'
-    },
-    {
-      name: 'First Class',
-      image : 'class1.png'
-    },
-    {
-      name: 'Second Class',
-      image : 'class2.png'
-    },
-    {
-      name: 'Third Class',
-      image : 'class3.png'
-    },
-    {
-      name: 'Forth Class',
-      image : 'class4.png'
-    },
-    {
-      name: 'Fifth Class',
-      image : 'class5.png'
-    },
-    {
-      name: 'Sixth Class',
-      image : 'class6.png'
-    },
-    {
-      name: 'Seventh Class',
-      image : 'class7.png'
-    },
-    {
-      name: 'Eighth Class',
-      image : 'class8.png'
-    },
-    {
-      name: 'Ninth Class',
-      image : 'class9.png'
-    },
-  ]
 
   //for class slider images
   most_watched = [
@@ -137,17 +96,125 @@ export class MainPage implements OnInit {
       image : 'maths.png'
     },
   ]
+  public serverUrl = "http://192.168.1.107:3000/";
+  public classes;
+  public name;
+  public profilePic;
+  public points;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public shareService: ShareService  , public loadingCtrl: LoadingController , private http: Http ,public toastCtrl: ToastController) {
+   var suuccessData = this.shareService.getSuccessData();
+   var userTypeId = suuccessData['usertype'];
+   var token = suuccessData['token'];
+   var languageId = suuccessData['languageId'];
+   var userId = suuccessData['userId'];
+   if(userTypeId==1){
+   //Student
+    console.log("S T U D E N T"); 
+    this.getStudentProfile(userId);
+   }
+   else if(userTypeId ==2){   
+    //Parent
+    console.log("P A R E N T");
+    this.getParentProfile(userId);
+   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+   //Get Classes
+   this.getGrades();
+   }
 
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainPage');
   }
+   ionViewDidEnter() {
+      console.log('ionViewDidLoad MainPage');
+      var suuccessData = this.shareService.getSuccessData();
+      console.log("Token =", suuccessData);
+      var profileData = this.shareService.getProfile(); 
+      //get grades on enter 
+       //this.getGrades();
+      //get answers stats of user
+     //  this.getAnswerStats();
+       //Get Profile in Session Share service
+           
+  }
   savedUserLogins(){
-    this.navCtrl.setRoot(SavedLoginsUsersPage);
+    this.navCtrl.setRoot(SavedLoginsUsersPage); 
   }
-  subjectSelection(){
-    this.navCtrl.push(SubjectSelectionPage);
+  subjectSelection(obj){
+    //Get Subjects of Class
+    console.log(obj); 
+    var gradeID = obj['gradeid'];
+    this.navCtrl.push(SubjectSelectionPage , { gradeid : gradeID});
+  } 
+
+  getStudentProfile(id){
+    let loading = this.loadingCtrl.create({
+         content: 'Getting Profile Data .. '
+         }); 
+    loading.present();  
+    this.http.get("http://192.168.1.107:3000/students/profile/"+id) 
+      .subscribe(data => {
+        var users = data.json();
+        this.shareService.setProfile(users);
+        this.name = users[0]['firstname'] +" "+users[0]['lastname'];
+        this.profilePic = users[0]['image'];
+        loading.dismiss(); 
+       }, error => {  
+         loading.dismiss(); 
+      console.log(error);// Error getting the data
+    });
   }
+
+  getParentProfile(id){
+    let loading = this.loadingCtrl.create({
+         content: 'Getting Profile Data ..'
+         });
+    loading.present(); 
+    this.http.get("http://192.168.1.107:3000/parent/profile/"+id) 
+      .subscribe(data => { 
+        var users = data.json(); 
+        loading.dismiss(); 
+       }, error => {  
+         loading.dismiss(); 
+      console.log(error);// Error getting the data
+    });
+  }
+
+  /// GET CLASSES TO SELECT http://localhost:3000/grades    
+
+  getGrades(){
+      this.http.get("http://192.168.1.107:3000/grades") 
+      .subscribe(data => {
+        this.classes = data.json();
+       }, error => {  
+      console.log(error);// Error getting the data
+    });
+  }
+
+  // GET ANSWERS STATS API - N O - 48 on D O C U M E N T A T I O N
+  getAnswerStats(){
+     var suuccessData = this.shareService.getSuccessData();
+     var token = suuccessData['token'];
+     var userId = suuccessData['userId'];
+     let headers = new Headers;
+      headers.append('Access-Control-Allow-Origin', '*' );
+      headers.append('Accept', 'application/json');
+      headers.append('x-access-token', token);
+      let options = new RequestOptions({ headers: headers });
+     this.http.get("http://192.168.1.107:3000/ExerciseResults/answeredStat/"+userId , options) 
+      .subscribe(data => {
+        var answerStats = data.json();
+        var CorrectAnswers = answerStats['TotalResult']['Correct Answers'];
+        var totalQuestions = answerStats['TotalResult']['Total Questions '];
+        var WrongAnswers = answerStats['TotalResult']['Wrong Answers'];
+        console.log("- A N S W E R S T A T S =" , CorrectAnswers , totalQuestions , WrongAnswers);
+       }, error => {  
+      console.log(error);// Error getting the data
+    });
+  }
+
+
+
+     
 }

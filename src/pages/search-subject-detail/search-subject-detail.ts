@@ -39,9 +39,6 @@ export class SearchSubjectDetailPage {
 @Component({
   template: `
 <ion-content text-center>
-<button ion-button (click)="dismiss()" class="modal_close_btn">
-      <ion-icon name="md-close"></ion-icon>
-    </button>
   <div class="modal_video"> 
         <video controls src="assets/videos/video-placeholder.mp4" style="width:100%; max-width: 100%;"></video>
   </div>

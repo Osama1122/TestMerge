@@ -14,7 +14,7 @@
 
 
 <ion-content>
-    <div class="container bg2 auto_height">
+    <div class="container bg2 fixed-height">
       <div class="wrapper">
         <ion-grid no-padding style="height: 100%">
           <ion-row style="height: 100%">
@@ -36,11 +36,11 @@
                         <ion-col col-12 text-center class="register_as prl-50 pt-5 pb-5">
                             <h1 class="c-brown">Sign Up</h1>
                               <div class="line line2"></div>
-                              <p><button class="btn_bg_onhover c-brown" ion-button (click)="studentRegister();">Student</button></p>
-                              <p><button class="btn_bg_onhover c-brown" ion-button (click)="parentRegister();">Parent</button></p>
-                              <p><button class="btn_bg_onhover c-brown" ion-button (click)="teacherRegister();">Teacher</button></p>
+                              <div *ngFor="let type of firstTwoUsers" >
+                              <p><button class="btn_bg_onhover c-brown" ion-button (click)="Register(type);">{{type.description}}</button></p>
+                              </div>
                               <div class="line line2"></div>
-                              <p><button class="btn_bg" ion-button (click)="studentRegister();">Next</button></p>
+                              <p><button class="btn_bg" ion-button (click)="Next();">Next</button></p>
                           </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -66,3 +66,10 @@
         </ion-title>
       </ion-toolbar>
     </ion-footer>
+
+    <style type="text/css">
+
+    btn_bg_onhover:active {
+  color: red;
+}
+    </style>

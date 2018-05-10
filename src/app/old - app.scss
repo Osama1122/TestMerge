@@ -267,12 +267,6 @@ ion-header{
     width: 50px;
     margin-left: 10px;
 }
-.ion-ios-delete-icon-outline,
-.ion-ios-delete-icon,.ion-md-delete-icon,.ion-md-delete-icon-outline
-{
-    content: url('../assets/imgs/delete.png');
-    width: 20px;
-}
 .leftbar{
     background-image: url('../assets/imgs/desktop_bg.jpg');
     background-repeat: no-repeat;
@@ -291,7 +285,7 @@ ion-header{
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
-    color: #fff !important;
+    color: #fff;
 }
 button{
     background-color: transparent !important;
@@ -367,7 +361,7 @@ input::placeholder{
     margin: 0 auto;
 }
 .line2{
-    width: 100%;
+    width: 95%;
 }
 .line3{
     width: 100%;
@@ -390,15 +384,12 @@ ion-header .back-button{
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     margin: 0 auto;
 }
 .slide-zoom {
     width: 80%;
-}
-.multi_users_login .swiper-slide-active h3 {
-    font-size: 16px;
 }
 .sidebar_content h1 {
     font-size: 30px;
@@ -470,7 +461,7 @@ div{
     border-radius: 100%;
 }
 .profile h2 {
-    font-size: 20px;
+    font-size: 24px;
 }
 .transparent_list_sidebar {
     border-bottom: 2px dashed #ccc;
@@ -575,6 +566,9 @@ progress-bar {
    -webkit-box-shadow: inset 0 0 10px #999;
    box-shadow:         inset 0 0 10px #999;
 }
+// .class_selection ion-slide {
+//     width: 40%!important;
+// }
 .c-lightbrown{
     color: #e1b479;
 }
@@ -595,8 +589,7 @@ progress-bar {
 .unit_payment_detail .item-md ion-avatar{
     margin-top: 0px;
 }
-.unit_payment_detail .item-md ion-avatar img, .subjects_search img, 
-.transaction-history ion-avatar img {
+.unit_payment_detail .item-md ion-avatar img, .subjects_search img {
     width: 100px;
     height: 100px;
     border-radius: 5px;
@@ -648,112 +641,6 @@ progress-bar {
 }
 .modal-wrapper .scroll-content, .modal_video video, .modal_video img{
     width: 100%;
-}
-.e-wallet-history .item-md {
-    padding-left: 0 !important;
-}
-.e-wallet-history .item-md ion-label{
-    color: #6a4219;
-}
-.form ion-list[role="radiogroup"] .item-md {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    margin-bottom: 0;
-}
-.recharge-history ion-avatar img {
-    border-radius: initial !important;
-}
-.recharge-history *, .transaction-history *, .settings *, .child-management *, .search_results h2,
-.search_results h6, .search_results h3 {
-    color: #6a4219 !important;
-}
-.settings ion-avatar img {
-    border-radius: initial;
-}
-.settings .item-md:hover{
-    cursor: pointer;
-}
-/*modal*/
-ion-modal {
-    background: rgba(0,0,0,0.7)
-}
-.modal-wrapper {
-    position: absolute;
-    top: 100px;
-    left: 0;
-    display: block;
-    width: 400px;
-    right: 0;
-    margin: 0 auto;
-    height: 350px;
-}  
-.modal_close_btn {
-    position: absolute;
-    background-color: deepskyblue !important;
-    width: auto;
-    min-width: auto;
-    padding: 0;
-    height: auto;
-    border-radius: 100%;
-    padding: 3px 5px 3px 7px;
-    font-size: 14px !important;
-    border: 2px dashed deepskyblue;
-    right: 0;
-    top: 0;
-}
-.modal-wrapper button {
-    min-width: auto;
-}
-.modal_buttons button {
-    border: 1px solid;
-    border-radius: 50px !important;
-    min-width: 100px !important;
-    width: 100px;
-    height: 4rem;
-}
-.microphone ion-icon{
-    color: #5dc357;
-}
-
-.bell ion-icon{
-    color: #fbf548;
-}
-.edit-form ion-label {
-    margin-left: 0;
-}
-.edit-form ion-item, .edit-form ion-item.input-has-focus{
-    background-color: transparent;
-    box-shadow: none;
-}
-.edit-form ion-label {
-    margin-left: 0;
-    font-size: 20px;
-}
-.edit-form ion-label {
-    margin-left: 0;
-    font-size: 20px;
-    line-height: 1.5;
-}
-.search_results .item-md .item-button {
-    height: 50px !important;
-}
-.class_selection {
-    height: 450px;
-}
-.class_selection ion-slide{
-    opacity: 0.7;
-}
-.class_selection ion-slide.swiper-slide-active{
-    opacity: 1;
-}
-.class_selection ion-slide.swiper-slide-active h3{
-   font-size: 14px;
-}
-.class_selection ion-slide img.thumb-img {
-    padding: 20px;
-}
-.class_selection ion-slide.swiper-slide-active img.thumb-img {
-    padding: 0 40px;
 }
 /*Responsive*/
 @media only screen and (max-width: 1199px){
@@ -835,26 +722,7 @@ ion-modal {
         text-overflow: ellipsis;
         height: 4.6rem;
     }
-
-     .footer_users_img{
-     border-radius: 50px;
-     }
-
-    .users_img {
-        background-size: 88%;
-    }
-    .multi_users_login .swiper-slide-active h3 {
-        font-size: 12px;
-    }
-    .most_watched img {
-        width: 70% !important;
-    }
  } /*======end 767======*/
  @media only screen and (max-width: 480px){
-    .modal-wrapper {
-        width: 85%;
-    }
-    .most_watched img {
-        width: auto !important;
-    }
+   
  }/*======end 480======*/

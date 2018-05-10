@@ -35,13 +35,13 @@
             <ion-col col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 no-padding class="rightbar2">
                 <ion-grid style="height: 100%">
                     <ion-row justify-content-center align-items-center style="height: 100%">
-                        <ion-col col-12 text-center class="multi_users_login" style="height: 100%">
-
+                                <ion-col col-12 text-center class="multi_users_login" style="height: 100%">
                             <ion-slides class="image-slider" loop="true" slidesPerView="3" centeredSlides="true">
-                                <ion-slide *ngFor="let users of images">
-                                  <div class="users_images" (click)="savedIndividualUser();">
-                                  <div class="users_img"><img src="assets/imgs/{{users.image}}" class="thumb-img" imageViewer/></div>
-                                  <h3 class="c-grey">{{users.name}}</h3>
+
+                                <ion-slide *ngFor="let user of usersdata" (click)="savedIndividualUser(user);">
+                                  <div class="users_images" >
+                                  <div class="users_img"><img src="{{serverUrl}}{{user.image}}" class="thumb-img" imageViewer/></div>
+                                  <h3 class="c-grey">{{user.firstname}} {{user.lastname}} </h3>
                                 </div>
                                 </ion-slide>
                               </ion-slides>

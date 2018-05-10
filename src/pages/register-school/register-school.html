@@ -36,35 +36,46 @@
                       <ion-col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3></ion-col>
                       <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center class="school_reg prl-50 mt-5 mb-5">
                             
-                            <form class="form" id="school-reg-form">
+                            <form class="form" id="school-reg-form"  [formGroup]="myForm">
                              
                                 <ion-list>
                                     <ion-item>
                                         <ion-label><ion-icon name="school-icon"></ion-icon></ion-label>
-                                        <ion-input type="text" placeholder="School Name" id="sch_name"></ion-input>
+                                        <ion-input type="text" placeholder="School Name" id="sch_name"  formControlName="schoolname"></ion-input>
                                       </ion-item>
-                                      
+                                         <ion-item class="label-left">
+                                        <ion-label><ion-icon name="flag"></ion-icon></ion-label>
+                                          <ion-select  [(ngModel)]="country" [ngModelOptions]="{standalone: true}"  (ionChange)="getCountry()" text-left >
+                                              <ion-option selected disabled value="city">Country</ion-option>
+                                              <ion-option *ngFor="let cn of countries" [value] ="cn" >
+                                                <span>
+                                                  <h2>{{cn.fullname}}</h2>
+                                                </span>
+                                              </ion-option>
+                                           </ion-select>
+                                      </ion-item>
                                       <ion-item class="label-left">
                                         <ion-label><ion-icon name="city-icon"></ion-icon></ion-label>
-                                        <ion-select text-left>
-                                          <ion-option selected disabled value="city">City</ion-option>
-                                          <ion-option value="">Nintendo64</ion-option>
-                                          <ion-option value="">PlayStation</ion-option>
-                                          <ion-option value="">Sega Genesis</ion-option>
-                                          <ion-option value="">Sega Saturn</ion-option>
-                                          <ion-option value="">SNES</ion-option>
-                                        </ion-select>
+                                          <ion-select  [(ngModel)]="city" [ngModelOptions]="{standalone: true}"  (ionChange)="getCity()" text-left >
+                                              <ion-option selected disabled value="city">City</ion-option>
+                                              <ion-option *ngFor="let c of cities" [value] ="c" >
+                                                <span>
+                                                  <h2>{{c.fullname}}</h2>
+                                                </span>
+                                              </ion-option>
+                                           </ion-select>
                                       </ion-item>
+
                                       <ion-item>
                                         <ion-label><ion-icon name="user-icon"></ion-icon></ion-label>
-                                        <ion-input type="text" placeholder="Address" id="address"></ion-input>
+                                        <ion-input type="text" placeholder="Address" id="address"  formControlName="address"></ion-input>
                                       </ion-item>
-                                      <ion-item>
+                                    <!--   <ion-item>
                                           <ion-label><ion-icon name="mobile-icon"></ion-icon></ion-label>
-                                          <ion-input type="tel" placeholder="Location" id="location"></ion-input>
-                                        </ion-item>
+                                          <ion-input type="tel" placeholder="Location" id="location"  formControlName="location"></ion-input>
+                                        </ion-item> -->
                                   </ion-list>
-                                    <button class="btn_bg" ion-button type="submit">Confirm School</button>
+                                    <button class="btn_bg" ion-button type="submit" [disabled]="!myForm.valid" (click)="RegisterSchool()">Confirm School</button>
                             </form>
                         </ion-col>
                       <ion-col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3></ion-col>

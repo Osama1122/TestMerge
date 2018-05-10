@@ -21,12 +21,12 @@
             <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 no-padding class="leftbar">
               <ion-list class="transparent_list_sidebar">
                 <ion-item class="profile change_size"> 
-                  <ion-avatar item-start>
-                    <img src="assets/imgs/ali.png">
-                  </ion-avatar>
-                  <h2>Ahmed Ali</h2>
-                  <p><u>View Profile</u><u float-right>Logout</u></p>
-                </ion-item>
+                <ion-avatar item-start>
+                  <img src="{{serverUrl}}{{profilePic}}">
+                </ion-avatar>
+                <h2>{{name}}</h2>
+                <p><u>View Profile</u><u float-right>Logout</u></p>
+              </ion-item>
                 <ion-item class="points_earned change_size">
                   <ion-avatar item-start>
                     <img src="assets/imgs/MedalGold.png">
@@ -105,12 +105,12 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 no-padding class="rightbar2">
                 <ion-grid style="height: 100%" no-padding>
-                    <ion-row justify-content-center align-items-center style="height: 100%">
+                    <ion-row justify-content-center align-items-center style="height: 100%">              
                         <ion-col col-12 text-center class="class_selection subject_selection ptb-2">
-                            <ion-slides class="image-slider" loop="true" slidesPerView="3" centeredSlides="true">
-                                <ion-slide *ngFor="let subject of subjects" (click)="unitSelection()">
+                             <ion-slides class="image-slider" loop="true" slidesPerView="3" centeredSlides="true">
+                                <ion-slide *ngFor="let subject of subjects" (click)="unitSelection(subject)">
                                   <div class="class_images">
-                                  <div class="class_img"><img src="assets/imgs/{{subject.image}}" class="thumb-img" /></div>
+                                  <div class="class_img"><img src="{{serverUrl}}{{subject.imageurl}}" class="thumb-img" /></div>
                                   <h3 class="c-grey">{{subject.name}}</h3>
                                 </div>
                                 </ion-slide>
@@ -152,8 +152,8 @@
               <ion-icon name="logout-icon"></ion-icon>
             </button>
             <button  ion-button icon-left float-right class="c-default">
-              Ali
-             <img src="assets/imgs/ali.png" width="50" />
+             {{name}}
+             <img src="{{serverUrl}}{{profilePic}}" width="50" />
             </button>
         </ion-title>
       </ion-toolbar>

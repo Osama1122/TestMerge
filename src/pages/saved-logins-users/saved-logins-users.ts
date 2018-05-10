@@ -1,8 +1,11 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams , Slides } from 'ionic-angular';
 import { SavedIndividualLoginPage } from '../saved-individual-login/saved-individual-login';
 import { TabsPage } from '../tabs/tabs';
 import { LoginPage } from '../login/login';
+import { Device } from '@ionic-native/device';
+import { Http, Headers,RequestOptions , URLSearchParams , Response } from '@angular/http';
+import { Platform } from 'ionic-angular';
 
 /**
  * Generated class for the SavedLoginsUsersPage page.
@@ -53,7 +56,7 @@ export class SavedLoginsUsersPage implements OnInit  {
       }
       this.slides._slides[slideIndex].style.transform = `scale(${slideScale})`;
     }
-  }
+  }  
 
   images = [
     {
@@ -61,36 +64,50 @@ export class SavedLoginsUsersPage implements OnInit  {
       image : 'ahmed.png'
     },
     {
-      name: 'Ali',
+      name: 'Ali', 
       image : 'ali.png'
-    },
-    {
-      name: 'Waqas',
+    },  
+    { 
+      name: 'Waqas',       
       image : 'waqas.png'
-    },
+    },   
     {
       name: 'Asad',
       image : 'naughty-boy.jpg'
-    },
-    {
-      name: 'Hina',
+    },   
+    {     
+      name: 'Hina',   
       image : 'write-number.jpg'
-    },
-  ]
-constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-}
-  ionViewDidLoad() {
+    },        
+  ] 
+public deviceUniqueID; 
+public users;
+public usersdata; 
+public serverUrl = "http://192.168.1.107:3000/"; 
+constructor(private device: Device , public navCtrl: NavController , private http: Http , public plt: Platform , public navParams: NavParams) {
+  this.usersdata = navParams.get('data');
+  this.users=navParams.get('data');
+}   
+  ionViewDidLoad() { 
     console.log('ionViewDidLoad SavedLoginsUsersPage');
+     this.usersdata =  this.users; 
   }
-
-  savedIndividualUser(){
-    this.navCtrl.push(SavedIndividualLoginPage);
+   
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter RegisterAsPage');
+   }
+ //USER CLICKS ON THE SPECIFIC USER TO GO FOR LOGIN SCREEN 
+  savedIndividualUser(obj){
+    var sendData = obj;
+    this.navCtrl.push(SavedIndividualLoginPage , { userdata : sendData });
   }
   login(){
+    //LOGIN USER WITH HIS PREVIOUS DETAILS : 
     this.navCtrl.push(LoginPage);
   }
   mainPageJump(){
-    this.navCtrl.setRoot(TabsPage);
+    this.navCtrl.setRoot(LoginPage);
   }
+
+
 }

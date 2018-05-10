@@ -1,8 +1,10 @@
 import { Component, ViewChild, OnInit} from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { IonicPage, NavController,ToastController, NavParams ,Slides } from 'ionic-angular';
 import { SavedLoginsUsersPage } from '../saved-logins-users/saved-logins-users';
 import { UnitSelectionPage } from '../unit-selection/unit-selection';
-
+import { ShareService } from '../services/share';
+import { Http, Headers,RequestOptions , URLSearchParams , Response } from '@angular/http';
+import { LoadingController } from 'ionic-angular';
 /**
  * Generated class for the SubjectSelectionPage page.
  *
@@ -54,8 +56,7 @@ export class SubjectSelectionPage implements OnInit {
     }
   }
 
-
-  //for date picker
+  //for date picker 
   public event = {
     month: '1990-02-19',
     timeStarts: '07:43',
@@ -66,65 +67,44 @@ export class SubjectSelectionPage implements OnInit {
     //@Input('propertyName') myValue;
     //@Output() someEvent = new EventEmitter();
 
-//for class slider images
-  subjects = [
-    {
-      name: 'Chemistry',
-      image : 'chemistry.png'
-    },
-    {
-      name: 'Mathematics',
-      image : 'maths.png'
-    },
-    {
-      name: 'Drawing',
-      image : 'drawing.png'
-    },
-    {
-      name: 'Biology',
-      image : 'bio.png'
-    },
-    {
-      name: 'English',
-      image : 'eng.png'
-    },
-    {
-      name: 'Geography',
-      image : 'geography.png'
-    },
-  ]
-
   //for class slider images
-  most_watched = [
-    {
-      name: 'Maths-KG1',
-      image : 'maths.png'
-    },
-    {
-      name: 'Maths-KG1',
-      image : 'maths.png'
-    },
-    {
-      name: 'Maths-KG1',
-      image : 'maths.png'
-    },
-    {
-      name: 'Maths-KG1',
-      image : 'maths.png'
-    },
-    {
-      name: 'Maths-KG1',
-      image : 'maths.png'
-    },
-    {
-      name: 'Maths-KG1',
-      image : 'maths.png'
-    },
-  ]
-
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  // most_watched = [
+  //   {
+  //     name: 'Maths-KG1',
+  //     image : 'maths.png'
+  //   },
+  //   {
+  //     name: 'Maths-KG1',
+  //     image : 'maths.png'
+  //   },
+  //   {
+  //     name: 'Maths-KG1',
+  //     image : 'maths.png'
+  //   },
+  //   {
+  //     name: 'Maths-KG1',
+  //     image : 'maths.png'
+  //   },
+  //   {
+  //     name: 'Maths-KG1',
+  //     image : 'maths.png'
+  //   },
+  //   {
+  //     name: 'Maths-KG1',
+  //     image : 'maths.png'
+  //   },
+  // ]
+  public serverUrl = "http://192.168.1.107:3000/"; 
+  public subjects;
+  public name;
+  public profilePic;  
+  constructor(public navCtrl: NavController, public navParams: NavParams ,public shareService: ShareService  , public loadingCtrl: LoadingController , private http: Http ,public toastCtrl: ToastController) {
+  var gradeid = navParams.get('gradeid'); 
+  this.getSubjectsOfGrades(gradeid);
+  var profileData = this.shareService.getProfile();
+  this.name = profileData[0]['firstname'] +" "+profileData[0]['lastname']; 
+  this.profilePic = profileData[0]['image']; 
+  }  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SubjectSelectionPage');
@@ -132,7 +112,37 @@ export class SubjectSelectionPage implements OnInit {
   savedUserLogins(){
     this.navCtrl.setRoot(SavedLoginsUsersPage);
   }
-  unitSelection(){
-    this.navCtrl.push(UnitSelectionPage);
+  unitSelection(obj){ 
+    //Get Unit of Class
+    console.log(obj);  
+    var subjectid = obj['subjectid'];
+    this.navCtrl.push(UnitSelectionPage , { subjectid : subjectid}); 
+  }
+
+  // GET SUBJECTS OF GRADES API - N O - 14 on D O C U M E N T A T I O N 
+  getSubjectsOfGrades(id){
+     var suuccessData = this.shareService.getSuccessData();  
+     var token = suuccessData['token'];
+     var userId = suuccessData['userId'];
+     let loading = this.loadingCtrl.create({
+         content: 'Getting Subjects .. '
+         });  
+     loading.present();
+     // let headers = new Headers;
+     // headers.append('Accept', 'application/json');
+     // let options = new RequestOptions({ headers: headers });
+     var headers = new Headers(); 
+     headers.append('Content-Type', 'application/json' );
+     headers.append('x-access-token', token); 
+     let options = new RequestOptions({ headers: headers} );
+     this.http.get("http://192.168.1.107:3000/subjects/grade/"+id, options ) 
+      .subscribe(data => {
+        this.subjects = data.json();
+        loading.dismiss(); 
+       }, error => {  
+         loading.dismiss(); 
+      console.log(error);// Error getting the data
+    });
+
   }
 }

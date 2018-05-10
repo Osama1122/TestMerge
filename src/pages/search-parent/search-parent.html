@@ -104,10 +104,10 @@
 
           </ion-col>
           <ion-col col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 no-padding class="rightbar2">
-              <ion-searchbar class="pr-5 pl-5" (ionInput)="getItems($event)"></ion-searchbar>
-              <ion-grid style="height: 100%;" no-padding>
+              <ion-grid style="height: 100%;">
                   <ion-row>
                       <ion-col col-12 class="search_results p-2">
+                          <ion-searchbar class="pr-5 pl-5" (ionInput)="getItems($event)"></ion-searchbar>
                           <h6>Search Results: </h6> <br/>
                           <ion-list class="transparent_list">
                               <ion-item *ngFor="let item of items">

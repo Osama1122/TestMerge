@@ -13,7 +13,7 @@ import { SearchPage } from '../pages/search/search';
 import { SettingsPage, ApplicationSettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
 import { StartingScreenPage } from '../pages/starting-screen/starting-screen';
-
+import { Http, HttpModule } from '@angular/http'; 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LanguageSelectionPage } from '../pages/language-selection/language-selection';
@@ -38,6 +38,9 @@ import { ResallerProfilePage } from '../pages/resaller-profile/resaller-profile'
 import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
 import { ChildManagementPage } from '../pages/child-management/child-management';
 import { SearchParentPage } from '../pages/search-parent/search-parent';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Device } from '@ionic-native/device';
+import { ShareService } from '../pages/services/share';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,8 @@ import { SearchParentPage } from '../pages/search-parent/search-parent';
     ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    HttpModule, 
     IonicModule.forRoot(MyApp),
     IonicImageViewerModule
   ],
@@ -73,6 +78,8 @@ import { SearchParentPage } from '../pages/search-parent/search-parent';
     ResallerProfilePage, ApplicationSettingsPage, ProfileSettingsPage, ChildManagementPage, SearchParentPage
   ],
   providers: [
+    Device,
+    ShareService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
